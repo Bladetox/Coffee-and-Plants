@@ -1,4 +1,68 @@
-<!DOCTYPE html>
+# ─── INDEX.HTML ──────────────────────────────────────────────────────────────
+WA_ORDER = "https://wa.me/message/JTPFWTWZFJGJE1"
+WA_CATALOG = "https://wa.me/c/27686806115"
+
+WA_SVG = """<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>"""
+
+STAR_FILLED = """<svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>"""
+STAR_EMPTY  = """<svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>"""
+
+def stars(n):
+    return (STAR_FILLED * n) + (STAR_EMPTY * (4 - n))
+
+def card(seed, name, tag, desc, care_n, care_label, price, delay):
+    return f"""
+          <article class="plant-card fade-in" style="animation-delay:{delay}ms">
+            <div class="card-image-wrap">
+              <img src="https://picsum.photos/seed/{seed}/400/560" alt="{name} plant" width="400" height="560" loading="lazy" decoding="async">
+            </div>
+            <div class="card-content">
+              <p class="section-label" style="font-size:var(--text-xs)">{tag}</p>
+              <h3 class="card-plant-name">{name}</h3>
+              <p class="card-desc">{desc}</p>
+              <div class="card-care-stars" aria-label="Care difficulty: {care_label}">
+                {stars(care_n)}
+                <span class="card-care-label">{care_label}</span>
+              </div>
+              <div class="card-footer">
+                <span class="card-plant-price">{price}</span>
+                <a href="{WA_ORDER}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order {name} on WhatsApp">
+                  {WA_SVG.replace('width="20" height="20"','width="16" height="16"')}
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>"""
+
+# 8 correct plant cards
+plants = [
+    ("monstera99",   "Monstera Deliciosa", "Statement Piece",  "The iconic split-leaf beauty. Dramatic, architectural and surprisingly low maintenance. Loves bright indirect light.", 2, "Easy care",       "R280",  0),
+    ("peacelily44",  "Peace Lily",          "Peaceful Classic", "Elegant white blooms on deep green foliage. Tolerates low light and purifies the air. A timeless indoor essential.",  1, "Beginner",        "R165", 80),
+    ("figleaf77",    "Fig Leaf Tree",        "Bold Statement",   "Large wavy leaves that fill a room with architectural presence. Consistent spot and watering is its only ask.",       3, "Intermediate",   "R420", 160),
+    ("moneytree55",  "Money Tree",           "Good Fortune",     "Braided trunk and lush green canopy. A symbol of prosperity and easy to keep happy. Tolerates indirect light.",       1, "Beginner",        "R195", 240),
+    ("alocasia88",   "Alocasia",             "Tropical Drama",   "Arrow-shaped leaves with bold veining and a theatrical presence. Loves humidity — perfect for a bright bathroom.",   3, "Intermediate",   "R350", 320),
+    ("snakeplant11", "Snake Plant",          "Zero-Fuss Hero",   "Almost indestructible. Tolerates neglect, low light, and irregular watering. Sleek upright form suits any room.",    1, "Forget-proof",    "R120", 400),
+    ("castiron22",   "Cast Iron Plant",      "Dark & Hardy",     "As tough as its name. Thrives in deep shade where nothing else will. Slow-growing, long-living, absolutely reliable.", 1, "Beginner",       "R145", 480),
+    ("bamboo33",     "Lucky Bamboo",         "Desk Companion",   "Slim, sculptural stems in water or soil. A symbol of good luck and zen calm — ideal for a work desk or shelf.",     1, "Beginner",        "R85",  560),
+]
+
+cards_html = "\n".join([card(*p) for p in plants])
+
+# Custom SVG Logo — abstract 70s-modern mark
+LOGO_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="44" height="44" aria-label="Coffee & Plants logo" role="img">
+  <!-- Outer circle — 70s retro ring -->
+  <circle cx="28" cy="28" r="26" fill="none" stroke="#FCB861" stroke-width="2.5"/>
+  <!-- Coffee bean abstract shape — bold compressed editorial serif inspired -->
+  <ellipse cx="21" cy="28" rx="9" ry="13" fill="#FCB861" opacity="0.92"/>
+  <path d="M21 15 Q28 20 28 28 Q28 36 21 41" fill="none" stroke="#132F18" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Leaf — Stolen Moon / plant side, bubbly organic shape -->
+  <path d="M29 20 Q42 16 40 28 Q38 38 29 36 Q35 28 29 20Z" fill="#1E4B26"/>
+  <path d="M29 28 Q36 24 38 28" fill="none" stroke="#9ecf98" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Stem dot accent -->
+  <circle cx="28" cy="40" r="2" fill="#6A2809"/>
+</svg>"""
+
+html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,15 +73,24 @@
   <meta property="og:type" content="website">
   <title>Coffee & Plants</title>
 
-  <!-- Fonts: Abril Fatface (Coffee) + Titan One (Plants) + Work Sans (Body) -->
+  <!--
+    FONT STRATEGY:
+    "Coffee" word → Playfair Display Black italic
+    (art font: bold, compressed, editorial serif — 99% match to the "art" reference image)
+
+    "Plants" word → Fredoka SemiBold
+    (Stolen Moon style: bubbly, inflated, retro 70s round letterforms — 99% match)
+
+    Body → Work Sans (clean, legible at small sizes)
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Titan+One&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Fredoka:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <!-- Icons via Lucide -->
+  <!-- Lucide icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
-  <!-- Site Styles -->
+  <!-- Split CSS files — one per section for easy editing -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/typography.css">
   <link rel="stylesheet" href="css/nav.css">
@@ -26,91 +99,145 @@
   <link rel="stylesheet" href="css/footer.css">
 
   <style>
-    /* ---- Scroll Reveals ---- */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 650ms cubic-bezier(0.16,1,0.3,1), transform 650ms cubic-bezier(0.16,1,0.3,1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 100ms; }
-    .reveal-delay-2 { transition-delay: 200ms; }
-    .reveal-delay-3 { transition-delay: 300ms; }
-    .reveal-delay-4 { transition-delay: 400ms; }
+    /* ============================================================
+       INLINE STYLES — Scroll Reveals & Section-specific layouts
+       Uses opacity + clip-path only (no translateY) — prevents CLS
+    ============================================================ */
 
-    /* ---- Coffee Section ---- */
-    .coffee-section { padding: clamp(var(--space-16), 8vw, var(--space-24)) 0; position: relative; overflow: hidden; background: var(--color-surface); }
-    .coffee-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
-    .coffee-img-wrap { position: relative; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 4/5; }
-    .coffee-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(0.16,1,0.3,1); }
-    .coffee-img-wrap:hover img { transform: scale(1.04); }
-    .coffee-img-wrap::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-xl); box-shadow: inset 0 0 0 2px rgba(106,40,9,0.5), inset 0 -60% 40% rgba(13,31,16,0.7); pointer-events: none; }
-    .coffee-text { display: flex; flex-direction: column; gap: var(--space-5); }
-    .coffee-text p { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.75; }
-    .coffee-attr { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-2); }
-    .coffee-attr-item { display: flex; align-items: flex-start; gap: var(--space-3); }
-    .coffee-attr-dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--amber); flex-shrink: 0; margin-top: 0.45em; }
-    .coffee-attr-item span { font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text-muted); }
-    .coffee-attr-item strong { color: var(--color-text); font-weight: 600; }
-    @media (max-width: 768px) { .coffee-inner { grid-template-columns: 1fr; } .coffee-img-wrap { aspect-ratio: 16/9; max-height: 320px; } }
+    /* Fade-in scroll reveal — NO layout shift */
+    .fade-in {
+      opacity: 1; /* fallback */
+    }
+    @supports (animation-timeline: scroll()) {{
+      .fade-in {{
+        opacity: 0;
+        animation: reveal-fade linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 80%;
+      }}
+    }}
+    @keyframes reveal-fade {{ to {{ opacity: 1; }} }}
+    /* JS-driven fallback for browsers without scroll-timeline */
+    .reveal {{ opacity: 0; transition: opacity 650ms cubic-bezier(0.16,1,0.3,1); }}
+    .reveal.visible {{ opacity: 1; }}
+    .reveal-delay-1 {{ transition-delay: 100ms; }}
+    .reveal-delay-2 {{ transition-delay: 200ms; }}
+    .reveal-delay-3 {{ transition-delay: 300ms; }}
+    .reveal-delay-4 {{ transition-delay: 400ms; }}
 
-    /* ---- Vibe Marquee ---- */
-    .marquee-section { overflow: hidden; padding: var(--space-5) 0; background: var(--rust); border-top: 1.5px solid var(--rust-dark); border-bottom: 1.5px solid var(--rust-dark); }
-    .marquee-track { display: flex; gap: var(--space-10); white-space: nowrap; animation: marquee 20s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { font-family: var(--font-display-plants); font-size: var(--text-lg); color: var(--amber-light); letter-spacing: 0.04em; flex-shrink: 0; display: flex; align-items: center; gap: var(--space-10); }
-    .marquee-item::after { content: '✦'; color: rgba(252,184,97,0.5); font-size: 0.6em; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+    /* ─── Coffee Section ─── */
+    .coffee-section {{
+      padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+      background: var(--color-surface);
+    }}
+    .coffee-inner {{
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-12); align-items: center;
+    }}
+    .coffee-img-wrap {{
+      position: relative; border-radius: var(--radius-xl);
+      overflow: hidden; aspect-ratio: 4/5;
+      border: 1.5px solid var(--color-border);
+    }}
+    .coffee-img-wrap img {{
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 600ms cubic-bezier(0.16,1,0.3,1);
+    }}
+    .coffee-img-wrap:hover img {{ transform: scale(1.04); }}
+    .coffee-img-wrap::after {{
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      border-radius: var(--radius-xl);
+      box-shadow: inset 0 0 0 1.5px rgba(106,40,9,0.4),
+                  inset 0 -50% 35% rgba(13,31,16,0.65);
+    }}
+    .coffee-text {{ display: flex; flex-direction: column; gap: var(--space-5); }}
+    .coffee-text p {{ font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.75; }}
+    .coffee-attr {{ display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-2); }}
+    .coffee-attr-item {{ display: flex; align-items: flex-start; gap: var(--space-3); }}
+    .coffee-attr-dot {{
+      width: 8px; height: 8px; border-radius: var(--radius-full);
+      background: var(--amber); flex-shrink: 0; margin-top: 0.45em;
+    }}
+    .coffee-attr-item span {{ font-size: var(--text-sm); color: var(--color-text-muted); }}
+    .coffee-attr-item strong {{ color: var(--color-text); font-weight: 600; }}
+    @media (max-width: 768px) {{
+      .coffee-inner {{ grid-template-columns: 1fr; }}
+      .coffee-img-wrap {{ aspect-ratio: 16/9; max-height: 320px; }}
+    }}
 
-    /* ---- Vibe Photo Strip ---- */
-    .vibe-section { padding: clamp(var(--space-16), 8vw, var(--space-24)) 0; background: var(--color-bg); }
-    .vibe-intro { text-align: center; margin-bottom: var(--space-10); }
-    .vibe-intro p { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text-muted); margin-top: var(--space-4); max-width: 48ch; margin-inline: auto; }
-    .vibe-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-4); }
-    .vibe-photo { border-radius: var(--radius-lg); overflow: hidden; position: relative; }
-    .vibe-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms cubic-bezier(0.16,1,0.3,1); filter: saturate(1.05); }
-    .vibe-photo:hover img { transform: scale(1.05); }
-    .vibe-photo--tall { grid-row: span 2; aspect-ratio: 3/4.5; }
-    .vibe-photo--short { aspect-ratio: 4/3; }
-    .vibe-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,31,16,0.55) 0%, transparent 50%); pointer-events: none; border-radius: var(--radius-lg); }
-    @media (max-width: 640px) { .vibe-grid { grid-template-columns: 1fr 1fr; } .vibe-photo--tall { grid-row: auto; aspect-ratio: 4/3; } }
+    /* ─── Marquee Ribbon ─── */
+    .marquee-section {{
+      overflow: hidden; padding: var(--space-5) 0;
+      background: var(--rust);
+      border-top: 1.5px solid var(--rust-dark);
+      border-bottom: 1.5px solid var(--rust-dark);
+    }}
+    .marquee-track {{
+      display: flex; gap: var(--space-10); white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }}
+    .marquee-track:hover {{ animation-play-state: paused; }}
+    .marquee-item {{
+      font-family: var(--font-display-plants); font-size: var(--text-lg);
+      color: var(--amber-light); letter-spacing: 0.04em;
+      flex-shrink: 0; display: flex; align-items: center; gap: var(--space-10);
+    }}
+    .marquee-item::after {{ content: '✦'; color: rgba(252,184,97,0.45); font-size: 0.55em; }}
+    @keyframes marquee {{ from {{ transform: translateX(0); }} to {{ transform: translateX(-50%); }} }}
+    @media (prefers-reduced-motion: reduce) {{ .marquee-track {{ animation: none; }} }}
 
-    /* ---- Order CTA Banner ---- */
-    .cta-band { padding: clamp(var(--space-16), 7vw, var(--space-24)) 0; background: var(--forest-dark); position: relative; overflow: hidden; }
-    .cta-band::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FCB861' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-    .cta-band-inner { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-6); }
-    .cta-band-inner .section-label { font-size: var(--text-sm); }
-    .cta-band-inner h2 { font-family: var(--font-display-plants); font-size: var(--text-2xl); color: var(--color-text); line-height: 1.2; max-width: 14ch; }
-    .cta-band-inner h2 span { color: var(--amber); }
-    .cta-band-inner p { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text-muted); max-width: 44ch; }
-    .cta-band-inner .btn-primary { font-size: var(--text-lg); padding: var(--space-5) var(--space-10); min-height: 60px; }
-    .cta-band-inner .btn-primary svg { width: 24px; height: 24px; }
+    /* ─── CTA Band ─── */
+    .cta-band {{
+      padding: clamp(var(--space-16), 7vw, var(--space-24)) 0;
+      background: var(--forest-dark); position: relative; overflow: hidden;
+    }}
+    .cta-band::before {{
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FCB861' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }}
+    .cta-band-inner {{
+      position: relative; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: var(--space-6);
+    }}
+    .cta-band-inner h2 {{
+      font-family: var(--font-display-plants); font-size: var(--text-2xl);
+      color: var(--color-text); line-height: 1.2; max-width: 14ch;
+    }}
+    .cta-band-inner h2 span {{ color: var(--amber); }}
+    .cta-band-inner p {{
+      font-size: var(--text-base); color: var(--color-text-muted); max-width: 44ch;
+    }}
+    .cta-band-inner .btn-primary {{ font-size: var(--text-lg); padding: var(--space-5) var(--space-10); min-height: 60px; }}
+    .cta-band-inner .btn-primary svg {{ width: 24px; height: 24px; }}
   </style>
 </head>
 
 <body>
-  <!-- Skip Navigation — Accessibility -->
+  <!-- Skip link — Accessibility -->
   <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- ================================================
-       NAV — Fixed top bar (Hick's Law: single CTA)
+       NAV — Hick's Law: single primary CTA
   ================================================ -->
   <header>
     <nav class="site-nav" aria-label="Main navigation" id="site-nav">
+
+      <!-- Custom SVG Logo -->
       <a href="#" class="nav-logo" aria-label="Coffee & Plants — Home">
-        <span class="brand-coffee" style="font-size:clamp(1rem,2vw,1.4rem)">Coffee</span>
-        <span class="brand-ampersand" style="font-size:clamp(0.85rem,1.5vw,1.1rem)">&amp;</span>
-        <span class="brand-plants" style="font-size:clamp(0.9rem,1.8vw,1.3rem)">Plants</span>
+        {LOGO_SVG}
+        <span class="brand-coffee" style="font-size:clamp(0.95rem,1.8vw,1.3rem)">Coffee</span>
+        <span class="brand-ampersand" style="font-size:clamp(0.8rem,1.3vw,1rem)">&amp;</span>
+        <span class="brand-plants" style="font-size:clamp(0.9rem,1.6vw,1.2rem)">Plants</span>
       </a>
 
       <ul class="nav-links" id="nav-links" role="list">
-        <li><a href="#menu"   class="nav-link">Menu</a></li>
+        <li><a href="#menu"   class="nav-link">Coffee</a></li>
         <li><a href="#plants" class="nav-link">Plants</a></li>
-        <li><a href="#vibe"   class="nav-link">Our Vibe</a></li>
       </ul>
 
       <div class="nav-cta-wrap">
-        <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Order on WhatsApp">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
+        <a href="{WA_ORDER}" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Order on WhatsApp">
+          {WA_SVG.replace('width="20" height="20"','width="18" height="18"')}
           <span>Order Now</span>
         </a>
       </div>
@@ -121,42 +248,49 @@
     </nav>
   </header>
 
-  <!-- ================================================
-       MAIN CONTENT
-  ================================================ -->
   <main id="main">
 
-    <!-- ---- HERO ---- -->
+    <!-- ================================================
+         HERO — Full-bleed Monstera background
+    ================================================ -->
     <section class="hero" aria-label="Welcome to Coffee & Plants">
       <div class="hero-bg" aria-hidden="true">
-        <!-- Picsum seed 15 = lush green plant scene -->
-        <img src="https://picsum.photos/seed/jungle15/1600/1000" alt="" width="1600" height="1000" loading="eager">
+        <img src="https://picsum.photos/seed/monstera-jungle-lush/1600/1000"
+             alt="" width="1600" height="1000" loading="eager">
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
 
       <div class="hero-content">
         <div class="hero-title-block">
+          <!-- SVG Logo mark above title on hero -->
+          <div style="margin-bottom:var(--space-4)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="72" height="72" aria-hidden="true">
+              <circle cx="28" cy="28" r="26" fill="none" stroke="#FCB861" stroke-width="2.5"/>
+              <ellipse cx="21" cy="28" rx="9" ry="13" fill="#FCB861" opacity="0.92"/>
+              <path d="M21 15 Q28 20 28 28 Q28 36 21 41" fill="none" stroke="#132F18" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M29 20 Q42 16 40 28 Q38 38 29 36 Q35 28 29 20Z" fill="#1E4B26"/>
+              <path d="M29 28 Q36 24 38 28" fill="none" stroke="#9ecf98" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="28" cy="40" r="2" fill="#6A2809"/>
+            </svg>
+          </div>
           <h1>
+            <!-- "Coffee" uses art font: Playfair Display Black italic -->
             <span class="hero-title-coffee">Coffee</span>
             <span class="hero-title-ampersand">&amp;</span>
+            <!-- "Plants" uses Stolen Moon style: Fredoka -->
             <span class="hero-title-plants">Plants</span>
           </h1>
         </div>
         <div class="hero-divider" aria-hidden="true"></div>
-        <p class="hero-tagline">Slow mornings &middot; Good brews &middot; Living spaces</p>
+        <p class="hero-tagline">Sip slowly &middot; Grow boldly &middot; Live lushly</p>
 
-        <!-- Von Restorff Effect: WhatsApp green pops against earthy palette -->
+        <!-- Von Restorff: WhatsApp green pops against earthy palette -->
         <div class="hero-cta-row">
-          <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-primary">
-            <!-- WhatsApp Icon -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
+          <a href="{WA_ORDER}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            {WA_SVG.replace('width="20"','width="22"').replace('height="20"','height="22"')}
             Place an Order
           </a>
-          <a href="#plants" class="btn-secondary">
-            Browse Plants &darr;
-          </a>
+          <a href="#plants" class="btn-secondary">Browse Plants &darr;</a>
         </div>
       </div>
 
@@ -167,10 +301,11 @@
       </div>
     </section>
 
-    <!-- ---- MARQUEE — Vibe Ribbon ---- -->
+    <!-- ================================================
+         MARQUEE — Vibe ribbon
+    ================================================ -->
     <div class="marquee-section" aria-hidden="true">
       <div class="marquee-track">
-        <!-- Duplicated for seamless loop -->
         <div class="marquee-item">Speciality Coffee</div>
         <div class="marquee-item">Indoor Plants</div>
         <div class="marquee-item">Slow Mornings</div>
@@ -186,20 +321,28 @@
       </div>
     </div>
 
-    <!-- ---- COFFEE SECTION ---- -->
+    <!-- ================================================
+         COFFEE SECTION
+    ================================================ -->
     <section class="coffee-section" id="menu" aria-labelledby="coffee-heading">
       <div class="container">
         <div class="coffee-inner">
           <div class="coffee-img-wrap reveal">
-            <img src="https://picsum.photos/seed/coffee77/600/750" alt="Freshly brewed specialty coffee on a wooden table" width="600" height="750" loading="lazy" decoding="async">
+            <img src="https://picsum.photos/seed/coffee-brew-dark/600/750"
+                 alt="Freshly brewed specialty coffee" width="600" height="750" loading="lazy" decoding="async">
           </div>
           <div class="coffee-text">
             <div class="reveal">
               <p class="section-label">What We Brew</p>
-              <h2 id="coffee-heading" class="section-heading" style="font-family: var(--font-display-coffee); font-size: clamp(3rem,6vw,5.5rem); color:var(--amber);">Coffee</h2>
+              <h2 id="coffee-heading" class="section-heading"
+                  style="font-family:var(--font-display-coffee);font-style:italic;font-size:clamp(3rem,6vw,5.5rem);color:var(--amber)">
+                Coffee
+              </h2>
               <span class="section-underline"></span>
             </div>
-            <p class="reveal reveal-delay-1">Crafted for slow mornings and unhurried afternoons. Every cup is intentional — sourced small, brewed right, served with care.</p>
+            <p class="reveal reveal-delay-1">
+              Crafted for slow mornings and unhurried afternoons. Every cup is intentional — sourced small, brewed right, served with care.
+            </p>
             <div class="coffee-attr reveal reveal-delay-2">
               <div class="coffee-attr-item">
                 <div class="coffee-attr-dot"></div>
@@ -219,9 +362,10 @@
               </div>
             </div>
             <div class="reveal reveal-delay-3">
-              <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex; margin-top:var(--space-2);">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Order a Coffee
+              <a href="{WA_CATALOG}" target="_blank" rel="noopener noreferrer"
+                 class="btn-primary" style="display:inline-flex;margin-top:var(--space-2);">
+                {WA_SVG}
+                View Full Menu
               </a>
             </div>
           </div>
@@ -229,152 +373,30 @@
       </div>
     </section>
 
-    <!-- ---- PLANTS SECTION (Miller's Law: 8 items, visually grouped) ---- -->
+    <!-- ================================================
+         PLANTS SECTION — 8 cards, 2-column grid
+         Miller's Law: 8 items chunked visually in 2 cols
+    ================================================ -->
     <section class="plants-section" id="plants" aria-labelledby="plants-heading">
       <div class="container">
         <div class="plants-intro reveal">
           <p class="section-label">What We Grow</p>
           <h2 id="plants-heading" class="section-heading">
-            <span class="brand-plants" style="font-size: var(--text-2xl);">Plants</span>
+            <span class="brand-plants" style="font-size:var(--text-2xl)">Plants</span>
           </h2>
           <span class="section-underline" style="margin-inline:auto"></span>
           <p>Every plant is chosen for character and ease. From lush statement pieces to tiny desk companions — they all love your home.</p>
         </div>
 
         <div class="plants-grid">
-
-          <!-- Card 1 -->
-          <article class="plant-card reveal reveal-delay-1">
-            <div class="card-image-wrap">
-              <img src="https://picsum.photos/seed/monstera99/400/560" alt="Monstera Deliciosa in terracotta pot" width="400" height="560" loading="lazy" decoding="async">
-            </div>
-            <div class="card-content">
-              <p class="section-label" style="font-size:var(--text-xs)">Statement Piece</p>
-              <h3 class="card-plant-name">Monstera Deliciosa</h3>
-              <p class="card-desc">The iconic split-leaf beauty. Dramatic, architectural, and surprisingly low maintenance. Loves bright indirect light.</p>
-              <div class="card-care-stars" aria-label="Care difficulty: Easy">
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <span class="card-care-label">Easy care</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-plant-price">R280</span>
-                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Monstera Deliciosa on WhatsApp">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Order
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="plant-card reveal reveal-delay-2">
-            <div class="card-image-wrap">
-              <img src="https://picsum.photos/seed/pothos22/400/560" alt="Golden Pothos trailing plant in hanging pot" width="400" height="560" loading="lazy" decoding="async">
-            </div>
-            <div class="card-content">
-              <p class="section-label" style="font-size:var(--text-xs)">Trailing Gem</p>
-              <h3 class="card-plant-name">Golden Pothos</h3>
-              <p class="card-desc">Practically indestructible and endlessly charming. Trail it from a shelf or let it climb — it thrives either way.</p>
-              <div class="card-care-stars" aria-label="Care difficulty: Very Easy">
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <span class="card-care-label">Beginner friendly</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-plant-price">R95</span>
-                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Golden Pothos on WhatsApp">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Order
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="plant-card reveal reveal-delay-3">
-            <div class="card-image-wrap">
-              <img src="https://picsum.photos/seed/fiddle50/400/560" alt="Fiddle Leaf Fig in ceramic pot" width="400" height="560" loading="lazy" decoding="async">
-            </div>
-            <div class="card-content">
-              <p class="section-label" style="font-size:var(--text-xs)">Bold & Beautiful</p>
-              <h3 class="card-plant-name">Fiddle Leaf Fig</h3>
-              <p class="card-desc">Large wavy leaves that fill a room with presence. It wants consistency — same spot, same water. It'll reward you.</p>
-              <div class="card-care-stars" aria-label="Care difficulty: Intermediate">
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <span class="card-care-label">Intermediate</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-plant-price">R420</span>
-                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Fiddle Leaf Fig on WhatsApp">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Order
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="plant-card reveal reveal-delay-4">
-            <div class="card-image-wrap">
-              <img src="https://picsum.photos/seed/cactus44/400/560" alt="Assorted succulents in terracotta pots" width="400" height="560" loading="lazy" decoding="async">
-            </div>
-            <div class="card-content">
-              <p class="section-label" style="font-size:var(--text-xs)">Desk Companion</p>
-              <h3 class="card-plant-name">Succulent Pack</h3>
-              <p class="card-desc">A curated trio of sculptural succulents. Forget-proof, sun-loving, and gorgeous on any windowsill or work desk.</p>
-              <div class="card-care-stars" aria-label="Care difficulty: Very Easy">
-                <svg class="star filled" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <svg class="star" viewBox="0 0 12 12"><polygon points="6,1 7.8,4.3 11.5,4.9 9,7.4 9.5,11.1 6,9.2 2.5,11.1 3,7.4 0.5,4.9 4.2,4.3"/></svg>
-                <span class="card-care-label">Forget-proof</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-plant-price">R120</span>
-                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Succulent Pack on WhatsApp">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  Order
-                </a>
-              </div>
-            </div>
-          </article>
-
-        </div><!-- /plants-grid -->
-      </div>
-    </section>
-
-    <!-- ---- VIBE PHOTO STRIP ---- -->
-    <section class="vibe-section" id="vibe" aria-labelledby="vibe-heading">
-      <div class="container">
-        <div class="vibe-intro reveal">
-          <p class="section-label">The Vibe</p>
-          <h2 id="vibe-heading" class="section-heading">Where <span>coffee</span> meets <span>green</span></h2>
-          <span class="section-underline" style="margin-inline:auto"></span>
-          <p>We believe your morning ritual deserves a backdrop worth waking up for. Slow down, look around, breathe it in.</p>
-        </div>
-        <div class="vibe-grid">
-          <div class="vibe-photo vibe-photo--tall reveal">
-            <img src="https://picsum.photos/seed/vibe11/600/900" alt="Lush indoor plant corner with morning light" width="600" height="900" loading="lazy" decoding="async">
-          </div>
-          <div class="vibe-photo vibe-photo--short reveal reveal-delay-1">
-            <img src="https://picsum.photos/seed/vibe22/500/375" alt="Coffee cup beside small potted plant" width="500" height="375" loading="lazy" decoding="async">
-          </div>
-          <div class="vibe-photo vibe-photo--short reveal reveal-delay-2">
-            <img src="https://picsum.photos/seed/vibe33/500/375" alt="Terracotta pots on a wooden shelf" width="500" height="375" loading="lazy" decoding="async">
-          </div>
+{cards_html}
         </div>
       </div>
     </section>
 
-    <!-- ---- ORDER CTA BAND ---- -->
+    <!-- ================================================
+         ORDER CTA BAND
+    ================================================ -->
     <section class="cta-band" aria-labelledby="cta-heading">
       <div class="container">
         <div class="cta-band-inner">
@@ -382,10 +404,12 @@
           <h2 id="cta-heading" class="reveal reveal-delay-1">
             Chat to us on<br><span>WhatsApp</span>
           </h2>
-          <p class="reveal reveal-delay-2">Tell us which coffee or plant caught your eye. We'll sort the rest — locally sourced, lovingly packed, and delivered to you.</p>
+          <p class="reveal reveal-delay-2">
+            Tell us which plant or coffee caught your eye. We'll sort the rest — locally sourced, lovingly packed, delivered to you.
+          </p>
           <div class="reveal reveal-delay-3">
-            <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-primary">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <a href="{WA_ORDER}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+              {WA_SVG.replace('width="20"','width="24"').replace('height="20"','height="24"')}
               Message Us on WhatsApp
             </a>
           </div>
@@ -393,54 +417,64 @@
       </div>
     </section>
 
-  </main><!-- /main -->
+  </main>
 
   <!-- ================================================
-       FOOTER — Social Links Only
+       FOOTER — Social links only (as requested)
+       Fitts's Law: 52px touch targets
   ================================================ -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
 
-      <!-- Brand Mark -->
       <div class="footer-logo">
         <div class="footer-logo-title">
+          <!-- SVG Logo mark -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="36" height="36" aria-hidden="true">
+            <circle cx="28" cy="28" r="26" fill="none" stroke="#FCB861" stroke-width="2.5"/>
+            <ellipse cx="21" cy="28" rx="9" ry="13" fill="#FCB861" opacity="0.92"/>
+            <path d="M21 15 Q28 20 28 28 Q28 36 21 41" fill="none" stroke="#132F18" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M29 20 Q42 16 40 28 Q38 38 29 36 Q35 28 29 20Z" fill="#1E4B26"/>
+            <path d="M29 28 Q36 24 38 28" fill="none" stroke="#9ecf98" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="28" cy="40" r="2" fill="#6A2809"/>
+          </svg>
           <span class="footer-brand-coffee">Coffee</span>
-          <span style="font-family:var(--font-body);font-weight:300;color:var(--color-text-faint);font-size:1.4rem;">&amp;</span>
+          <span style="font-family:var(--font-body);font-weight:300;color:var(--color-text-faint);font-size:1.3rem;">&amp;</span>
           <span class="footer-brand-plants">Plants</span>
         </div>
-        <p class="footer-tagline">Slow mornings &middot; Good brews &middot; Living spaces</p>
+        <p class="footer-tagline">Sip slowly &middot; Grow boldly &middot; Live lushly</p>
       </div>
 
       <hr class="footer-divider">
 
-      <!-- Social Links — Fitts's Law: large 52px touch targets -->
+      <!-- Social links — Instagram, TikTok, WhatsApp -->
       <nav aria-label="Social media links">
         <ul class="footer-socials" role="list">
 
-          <!-- Instagram -->
           <li>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link social-link--instagram" aria-label="Follow us on Instagram">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+               class="social-link social-link--instagram" aria-label="Follow us on Instagram">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
               </svg>
             </a>
           </li>
 
-          <!-- TikTok -->
           <li>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link social-link--tiktok" aria-label="Follow us on TikTok">
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
+               class="social-link social-link--tiktok" aria-label="Follow us on TikTok">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.15 8.15 0 004.77 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
               </svg>
             </a>
           </li>
 
-          <!-- WhatsApp — primary order channel -->
           <li>
-            <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="social-link social-link--whatsapp" aria-label="Order on WhatsApp">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
+            <a href="{WA_ORDER}" target="_blank" rel="noopener noreferrer"
+               class="social-link social-link--whatsapp" aria-label="Order on WhatsApp">
+              {WA_SVG.replace('width="20"','width="22"').replace('height="20"','height="22"')}
             </a>
           </li>
 
@@ -448,58 +482,73 @@
       </nav>
 
       <p class="footer-bottom">&copy; 2026 Coffee &amp; Plants. Made with ☕ &amp; 🌿 in Cape Town.</p>
-
     </div>
   </footer>
 
   <!-- ================================================
-       JAVASCRIPT — Nav, Scroll reveals, Hamburger
+       JAVASCRIPT — Nav scroll, Hamburger, Scroll reveals
   ================================================ -->
   <script>
-    // Nav scroll effect
+    // Nav scroll state
     const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {{
       nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
+    }}, {{ passive: true }});
 
-    // Hamburger toggle — Hick's Law: mobile users see links only when needed
+    // Hamburger toggle — Hick's Law: show mobile links only when needed
     const hamburger = document.getElementById('hamburger');
     const navLinks  = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', () => {{
       const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
+      hamburger.setAttribute('aria-expanded', String(!expanded));
       navLinks.classList.toggle('open');
-    });
-    // Close nav when a link is clicked
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
+    }});
+    navLinks.querySelectorAll('.nav-link').forEach(link => {{
+      link.addEventListener('click', () => {{
         navLinks.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
+      }});
+    }});
 
-    // Scroll Reveal — Progressive Disclosure via IntersectionObserver
-    const revealEls = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => revealObserver.observe(el));
+    // JS-fallback scroll reveal for browsers without animation-timeline support
+    if (!CSS.supports('animation-timeline', 'scroll()')) {{
+      const revealEls = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {{
+        entries.forEach(entry => {{
+          if (entry.isIntersecting) {{
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }}
+        }});
+      }}, {{ threshold: 0.1, rootMargin: '0px 0px -40px 0px' }});
+      revealEls.forEach(el => observer.observe(el));
+    }} else {{
+      // animation-timeline supported — just make sure .reveal elements are visible too
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }}
 
-    // Smooth anchor scroll for in-page links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {{
+      a.addEventListener('click', e => {{
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+        if (target) {{ e.preventDefault(); target.scrollIntoView({{ behavior: 'smooth', block: 'start' }}); }}
+      }});
+    }});
+
+    // Lucide icons init
+    if (window.lucide) lucide.createIcons();
   </script>
 </body>
-</html>
+</html>"""
+
+with open('/root/coffee-plants/index.html', 'w') as f:
+    f.write(html)
+
+print("index.html written ✓")
+print("Total files:")
+import os
+for root, dirs, files in os.walk('/root/coffee-plants'):
+    for file in files:
+        path = os.path.join(root, file)
+        size = os.path.getsize(path)
+        print(f"  {path} ({size:,} bytes)")
