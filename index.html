@@ -1,1 +1,507 @@
-<!-- Coffee & Plants Landing Page -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee & Plants — Sip slowly. Grow boldly.</title>
+  <meta name="description" content="A lifestyle brand rooted in the quiet ritual of coffee and the wild beauty of plants. Order your plants via WhatsApp." />
+  <meta property="og:title" content="Coffee & Plants" />
+  <meta property="og:description" content="Sip slowly. Grow boldly." />
+  <meta property="og:type" content="website" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Titan+One&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Split CSS files -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/cards.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+
+  <!-- Favicon: inline SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231E4B26'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='serif' font-weight='900' fill='%23FCB861'%3EC%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Coffee and Plants home">
+      <span class="brand-coffee brand-title" style="font-size:clamp(1.1rem,2vw,1.5rem)">Coffee</span>
+      <span class="brand-ampersand brand-title" style="font-size:clamp(0.9rem,1.5vw,1.2rem)">&amp;</span>
+      <span class="brand-plants brand-title" style="font-size:clamp(1.1rem,2vw,1.5rem)">Plants</span>
+    </a>
+
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#plants" class="nav-link">Our Plants</a></li>
+      <li><a href="https://wa.me/c/27686806115" target="_blank" rel="noopener noreferrer" class="nav-link">Catalogue</a></li>
+    </ul>
+
+    <div class="nav-cta-wrap">
+      <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="Order via WhatsApp">
+        <!-- WhatsApp icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Order Now
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════ -->
+  <main id="main">
+    <section class="hero" aria-label="Hero">
+
+      <div class="hero-bg">
+        <img
+          src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/53ed9a3515af4ac224c5803831e3d068ce1f5e5c.jpg"
+          alt="Lush Monstera plant with dramatic dark green leaves"
+          width="1600"
+          height="900"
+          fetchpriority="high"
+          decoding="async"
+          style="object-position: center 30%;"
+        />
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+
+        <!-- SVG Logo Mark -->
+        <div style="margin-bottom:var(--space-8); display:flex; justify-content:center;">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Coffee and Plants logo mark" role="img">
+            <!-- Outer circle — rust -->
+            <circle cx="40" cy="40" r="38" stroke="#6A2809" stroke-width="2" fill="none"/>
+            <!-- Bold leaf shape — forest green fill -->
+            <path d="M40 12 C28 20, 16 30, 20 50 C24 66, 38 68, 40 68 C42 68, 56 66, 60 50 C64 30, 52 20, 40 12Z" fill="#1E4B26"/>
+            <!-- Leaf midrib -->
+            <path d="M40 14 C40 30, 40 50, 40 66" stroke="#FCB861" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Leaf veins left -->
+            <path d="M40 28 C34 30, 24 34, 22 42" stroke="#FCB861" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M40 40 C33 42, 23 44, 22 52" stroke="#FCB861" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <!-- Leaf veins right -->
+            <path d="M40 28 C46 30, 56 34, 58 42" stroke="#FCB861" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <path d="M40 40 C47 42, 57 44, 58 52" stroke="#FCB861" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <!-- Coffee cup silhouette bottom left — rust -->
+            <path d="M12 54 L12 66 Q12 68 14 68 L26 68 Q28 68 28 66 L28 54 Z" fill="#6A2809" opacity="0.9"/>
+            <path d="M28 58 Q33 57 33 61 Q33 65 28 64" stroke="#6A2809" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Steam wisps above cup -->
+            <path d="M17 52 Q18 49 17 46" stroke="#FCB861" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M22 51 Q23 48 22 45" stroke="#FCB861" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </div>
+
+        <!-- Hero title -->
+        <div class="hero-title-block">
+          <h1>
+            <span class="hero-title-coffee">Coffee</span>
+            <span class="hero-title-ampersand">&amp;</span>
+            <span class="hero-title-plants">Plants</span>
+          </h1>
+        </div>
+
+        <div class="hero-divider" aria-hidden="true"></div>
+
+        <p class="hero-tagline">Sip slowly. Grow boldly.</p>
+
+        <div class="hero-cta-row">
+          <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Order a plant via WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Order via WhatsApp
+          </a>
+          <a href="https://wa.me/c/27686806115" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Browse our plant catalogue">
+            Browse Catalogue →
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+        Scroll
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PLANTS SHOWCASE
+    ══════════════════════════════════════ -->
+    <section class="plants-section" id="plants" aria-label="Our Plants">
+      <div class="container">
+
+        <div class="plants-intro">
+          <h2 class="section-heading">
+            Our <span>Plants</span>
+            <span class="section-underline" aria-hidden="true"></span>
+          </h2>
+          <p>Handpicked for beauty, resilience, and the quiet joy they bring to any space.</p>
+        </div>
+
+        <div class="plants-grid" role="list">
+
+          <!-- Card 1 — Monstera -->
+          <article class="plant-card" role="listitem" aria-label="Monstera plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/db507e89ac883194c7dd0b0bf4ec722d4e339044.jpg"
+                alt="Monstera deliciosa in a dark concrete planter"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Monstera</h3>
+              <div class="card-care-stars" aria-label="Care level: easy, 1 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Easy care</span>
+              </div>
+              <p class="card-desc">The iconic split-leaf beauty. Thrives in indirect light and rewards you with dramatic, fenestrated leaves.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R185">R185</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Monstera via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 — Peace Lily -->
+          <article class="plant-card" role="listitem" aria-label="Peace Lily plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/677b59174a14621f9570589246ae717d7e14d096.jpg"
+                alt="Peace Lily with white bloom on dark background"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Peace Lily</h3>
+              <div class="card-care-stars" aria-label="Care level: easy, 1 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Easy care</span>
+              </div>
+              <p class="card-desc">Elegant white blooms and glossy leaves. A natural air purifier that thrives in low light — perfect for any room.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R95">R95</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Peace Lily via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 — Fig Leaf Tree -->
+          <article class="plant-card" role="listitem" aria-label="Fig Leaf Tree plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/dffec655c1eb24537c73cc71e2285a81e3edf063.jpg"
+                alt="Fiddle Leaf Fig Tree in a tall black vase"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Fig Leaf Tree</h3>
+              <div class="card-care-stars" aria-label="Care level: moderate, 3 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Moderate</span>
+              </div>
+              <p class="card-desc">A statement-maker with large, sculptural leaves. Loves bright indirect light and consistent watering.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R220">R220</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Fig Leaf Tree via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 — Money Tree -->
+          <article class="plant-card" role="listitem" aria-label="Money Tree plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/315d253742f0af99aec7a6a6f4b8c30280bbd3b4.jpg"
+                alt="Money Tree Pachira Aquatica with braided trunk on dark background"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Money Tree</h3>
+              <div class="card-care-stars" aria-label="Care level: easy, 1 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Easy care</span>
+              </div>
+              <p class="card-desc">Braided trunk, lush canopy. Believed to bring prosperity — and it's one of the most forgiving houseplants around.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R110">R110</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Money Tree via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 — Alocasia -->
+          <article class="plant-card" role="listitem" aria-label="Alocasia plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/b33bdcba6318a72387da9336d9565f65f4f47918.jpg"
+                alt="Alocasia Regal Shields with large dark green leaves"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Alocasia</h3>
+              <div class="card-care-stars" aria-label="Care level: moderate, 3 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Moderate</span>
+              </div>
+              <p class="card-desc">Bold, theatrical foliage with dramatic arrow-shaped leaves. Keeps you on your toes — and rewards the effort tenfold.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R165">R165</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Alocasia via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 — Snake Plant -->
+          <article class="plant-card" role="listitem" aria-label="Snake Plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e96b7ed52a1483a3a49475c937d1156293f6901a.jpg"
+                alt="Black Dragon Sansevieria Snake Plant with dark upright leaves"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Snake Plant</h3>
+              <div class="card-care-stars" aria-label="Care level: very easy, 1 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Very easy</span>
+              </div>
+              <p class="card-desc">The ultimate low-maintenance companion. Thrives on neglect, purifies air, and adds sculptural elegance to any corner.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R85">R85</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Snake Plant via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7 — Cast Iron Plant -->
+          <article class="plant-card" role="listitem" aria-label="Cast Iron Plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/dc262e79b1f96f25c60c01db1696b636d48d536e.jpg"
+                alt="Cast Iron Plant (Aspidistra elatior) with broad dark green leaves"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Cast Iron Plant</h3>
+              <div class="card-care-stars" aria-label="Care level: very easy, 1 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Very easy</span>
+              </div>
+              <p class="card-desc">Dark, architectural leaves and near-indestructible resilience. Perfect for shaded spots where other plants refuse to grow.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R130">R130</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Cast Iron Plant via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8 — Lucky Bamboo -->
+          <article class="plant-card" role="listitem" aria-label="Lucky Bamboo plant">
+            <div class="card-image-wrap">
+              <img
+                src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/d202487f6afd8ae7bf2a3af7cb106fd1e4bf8542.jpg"
+                alt="Lucky bamboo stalks with new green shoots"
+                width="400" height="400" loading="lazy" decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <h3 class="card-plant-name">Lucky Bamboo</h3>
+              <div class="card-care-stars" aria-label="Care level: very easy, 1 out of 5">
+                <svg class="star filled" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <svg class="star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                <span class="card-care-label">Very easy</span>
+              </div>
+              <p class="card-desc">Grow it in water or soil — it doesn't mind. A symbol of good fortune and minimalist beauty for any desk or shelf.</p>
+              <div class="card-footer">
+                <span class="card-plant-price" aria-label="Price: R75">R75</span>
+                <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" aria-label="Order Lucky Bamboo via WhatsApp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Order
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- end .plants-grid -->
+      </div><!-- end .container -->
+    </section>
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-logo">
+        <div class="footer-logo-title">
+          <span class="footer-brand-coffee" style="font-family:var(--font-display-coffee)">Coffee</span>
+          <span class="brand-ampersand" style="font-family:var(--font-body);font-weight:300">&amp;</span>
+          <span class="footer-brand-plants">Plants</span>
+        </div>
+        <p class="footer-tagline">Sip slowly. Grow boldly.</p>
+      </div>
+
+      <hr class="footer-divider" aria-hidden="true" />
+
+      <!-- Social links -->
+      <ul class="footer-socials" role="list" aria-label="Social media links">
+        <!-- Instagram -->
+        <li>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow us on Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+        </li>
+        <!-- TikTok -->
+        <li>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow us on TikTok">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.16 8.16 0 004.77 1.52V6.77a4.85 4.85 0 01-1-.08z"/>
+            </svg>
+          </a>
+        </li>
+        <!-- WhatsApp -->
+        <li>
+          <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Order via WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Coffee &amp; Plants. All rights reserved. · <a href="https://wa.me/message/JTPFWTWZFJGJE1" target="_blank" rel="noopener noreferrer">Order via WhatsApp</a></p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       JAVASCRIPT — Nav scroll + hamburger
+  ══════════════════════════════════════ -->
+  <script defer>
+    // Nav scroll effect
+    const nav = document.querySelector('.site-nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Scroll-reveal animation (Laws of UX: reduce cognitive load with progressive reveal)
+    const revealEls = document.querySelectorAll('.plant-card, .plants-intro');
+    const observer  = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
