@@ -1,37 +1,56 @@
 /* ============================================
-   CARDS.CSS — Plant Showcase Cards
+   CARDS.CSS — Plant Showcase Section
    Coffee & Plants
+   Classes match index.html exactly
 ============================================ */
 
-/* Section Wrapper */
+/* ── Section wrapper ── */
 .plants-section {
   padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
   background: var(--color-bg);
   position: relative;
 }
 
-/* Decorative top border line */
-.plants-section::before {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--rust);
-  margin: 0 auto var(--space-12);
-  border-radius: var(--radius-full);
-}
-
-.plants-section-header {
+/* ── Section intro ── */
+.plants-intro {
   text-align: center;
   margin-bottom: var(--space-12);
+  padding-inline: var(--space-6);
 }
 
-.plants-section-header .section-label {
+.section-heading {
+  font-family: var(--font-plants);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  line-height: 1.1;
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--space-4);
+}
+
+.section-heading span {
+  color: var(--amber);
+}
+
+.section-underline {
   display: block;
-  margin-bottom: var(--space-3);
+  width: 56px;
+  height: 3px;
+  background: var(--rust);
+  border-radius: var(--radius-full);
+  margin: var(--space-3) auto 0;
 }
 
-/* 2-Column Grid */
+.plants-intro p {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-inline: auto;
+  margin-top: var(--space-4);
+}
+
+/* ── 2-column grid ── */
 .plants-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -41,36 +60,38 @@
   padding-inline: var(--space-6);
 }
 
-/* Individual Card */
+/* ── Individual card ── */
 .plant-card {
-  position: relative;
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 200px 1fr;
   border-radius: var(--radius-xl);
   border: 1.5px solid var(--color-border);
   overflow: hidden;
-  background: var(--color-surface-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(19, 47, 24, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-shadow: var(--shadow-md);
-  transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition);
-  min-height: 240px;
+  min-height: 230px;
+  transition:
+    transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color var(--transition);
 }
 
 .plant-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(252, 184, 97, 0.2);
-  border-color: var(--amber-dark);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(252, 184, 97, 0.18);
+  border-color: rgba(252, 184, 97, 0.5);
 }
 
-/* Plant Image */
-.plant-card-image {
+/* ── Card image ── */
+.card-image-wrap {
   position: relative;
   overflow: hidden;
   background: var(--forest-dark);
 }
 
-.plant-card-image img {
+.card-image-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -78,75 +99,104 @@
   transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.plant-card:hover .plant-card-image img {
-  transform: scale(1.06);
+.plant-card:hover .card-image-wrap img {
+  transform: scale(1.07);
 }
 
-/* Subtle overlay on image */
-.plant-card-image::after {
+/* Fade edge toward card body */
+.card-image-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, transparent 70%, var(--color-surface-card) 100%);
+  background: linear-gradient(to right, transparent 65%, rgba(19, 47, 24, 0.9) 100%);
   pointer-events: none;
 }
 
-/* Card Body */
-.plant-card-body {
-  padding: var(--space-5) var(--space-6);
+/* ── Card content ── */
+.card-content {
+  padding: var(--space-5) var(--space-5);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
-/* Card Header */
-.plant-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-/* Care icons row */
-.plant-care-row {
-  display: flex;
   gap: var(--space-3);
-  margin-top: var(--space-2);
+  justify-content: space-between;
 }
 
-.care-badge {
-  display: inline-flex;
+/* ── Plant name ── */
+.card-plant-name {
+  font-family: var(--font-plants);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* ── Care star rating ── */
+.card-care-stars {
+  display: flex;
   align-items: center;
   gap: var(--space-1);
-  padding: var(--space-1) var(--space-2);
-  border-radius: var(--radius-sm);
-  background: rgba(252, 184, 97, 0.1);
-  border: 1px solid rgba(252, 184, 97, 0.2);
+}
+
+.card-care-stars .star {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: var(--color-text-faint);
+  stroke-width: 1.5;
+  flex-shrink: 0;
+}
+
+.card-care-stars .star.filled {
+  fill: var(--amber);
+  stroke: var(--amber);
+}
+
+.card-care-label {
+  font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: var(--amber-light);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-left: var(--space-1);
 }
 
-/* Price + CTA row */
-.plant-card-footer {
+/* ── Description ── */
+.card-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 36ch;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* ── Card footer: price + CTA ── */
+.card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-top: auto;
   padding-top: var(--space-3);
-  border-top: 1px solid var(--color-divider);
+  border-top: 1px solid rgba(252, 184, 97, 0.15);
+  margin-top: auto;
 }
 
-.plant-price-block { display: flex; flex-direction: column; gap: 2px; }
+.card-plant-price {
+  font-family: var(--font-coffee);
+  font-size: var(--text-xl);
+  color: var(--amber);
+  line-height: 1;
+  flex-shrink: 0;
+}
 
-/* WhatsApp Order Button */
-.btn-order {
+/* ── WhatsApp order button (on cards) ── */
+.btn-whatsapp {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
+  padding: var(--space-2) var(--space-4);
   background: #25D366;
   color: #fff;
   border-radius: var(--radius-full);
@@ -155,60 +205,47 @@
   font-weight: 700;
   text-decoration: none;
   min-height: 44px;
-  border: none;
-  cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
+  border: none;
+  cursor: pointer;
   transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
   box-shadow: 0 2px 12px rgba(37, 211, 102, 0.35);
 }
 
-.btn-order:hover {
+.btn-whatsapp:hover {
   background: #1da850;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
 }
 
-.btn-order:active { transform: translateY(0); }
+.btn-whatsapp:active { transform: translateY(0); }
 
-.btn-order svg {
-  width: 16px;
-  height: 16px;
+.btn-whatsapp svg {
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
 }
 
-/* Card entrance animation */
-.plant-card {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 500ms ease,
-    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow var(--transition-slow),
-    border-color var(--transition);
-}
-
-.plant-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger delay */
-.plant-card:nth-child(1) { transition-delay: 0ms; }
-.plant-card:nth-child(2) { transition-delay: 80ms; }
-.plant-card:nth-child(3) { transition-delay: 160ms; }
-.plant-card:nth-child(4) { transition-delay: 240ms; }
-.plant-card:nth-child(5) { transition-delay: 320ms; }
-.plant-card:nth-child(6) { transition-delay: 400ms; }
-.plant-card:nth-child(7) { transition-delay: 480ms; }
-.plant-card:nth-child(8) { transition-delay: 560ms; }
-
-/* Responsive */
-@media (max-width: 900px) {
-  .plants-grid { grid-template-columns: 1fr; }
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .plants-grid {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+  }
 }
 
 @media (max-width: 600px) {
-  .plant-card { grid-template-columns: 1fr; grid-template-rows: 200px auto; }
-  .plant-card-image::after { background: linear-gradient(to bottom, transparent 70%, var(--color-surface-card) 100%); }
+  .plant-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px auto;
+  }
+
+  .card-image-wrap::after {
+    background: linear-gradient(to bottom, transparent 65%, rgba(19, 47, 24, 0.9) 100%);
+  }
+
+  .card-desc { max-width: 100%; }
+
+  .plants-grid { padding-inline: var(--space-4); gap: var(--space-4); }
 }
