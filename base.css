@@ -1,0 +1,932 @@
+import os
+
+BASE = os.path.expanduser("~/coffee-plants")
+CSS  = os.path.join(BASE, "css")
+os.makedirs(CSS, exist_ok=True)
+
+WA_ORDER   = "https://wa.me/message/JTPFWTWZFJGJE1"
+WA_CATALOG = "https://wa.me/c/27686806115"
+
+# ── CSS FILES ──────────────────────────────────────────────────────────────
+
+files = {}
+
+# ── base.css ──────────────────────────────────────────────────────────────
+files["css/base.css"] = """
+/* ═══════════════════════════════════════════════════════════════
+   BASE.CSS — Design tokens, reset, base styles
+   Coffee & Plants
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ── */
+:root {
+  /* Brand palette */
+  --rust:         #6A2809;
+  --rust-dark:    #4d1d06;
+  --rust-light:   #8a3a10;
+  --amber:        #FCB861;
+  --amber-light:  #ffd599;
+  --amber-dark:   #d4922f;
+  --forest:       #1E4B26;
+  --forest-dark:  #132F18;
+  --forest-light: #2e6636;
+
+  /* Surface tokens */
+  --color-bg:             #0e1a11;
+  --color-surface:        #12201a;
+  --color-surface-2:      #172719;
+  --color-surface-offset: #1c2e1e;
+  --color-border:         rgba(106,40,9,0.45);
+  --color-divider:        rgba(106,40,9,0.3);
+
+  /* Text tokens */
+  --color-text:           #f0ebe3;
+  --color-text-muted:     #bfb8aa;
+  --color-text-faint:     #7a7368;
+  --color-text-inverse:   #0e1a11;
+
+  /* Type scale */
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+  --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+  --text-hero: clamp(3.2rem,   1rem    + 6.5vw,  8rem);
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Radius */
+  --radius-sm:   0.375rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1.25rem;
+  --radius-2xl:  2rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.35);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.45);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.55);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: 200ms var(--ease-out);
+
+  /* Fonts */
+  --font-display-coffee: 'Playfair Display', 'Georgia', serif;
+  --font-display-plants: 'Fredoka', 'Trebuchet MS', sans-serif;
+  --font-body:           'Work Sans', system-ui, sans-serif;
+
+  /* Layout */
+  --content-default: 1160px;
+  --content-narrow:  640px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  hanging-punctuation: first last;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.65;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+ul[role="list"], ol[role="list"] { list-style: none; }
+input, button, textarea, select { font: inherit; color: inherit; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.15; }
+p, li, figcaption { text-wrap: pretty; }
+
+button { cursor: pointer; background: none; border: none; }
+table  { border-collapse: collapse; width: 100%; }
+
+::selection { background: rgba(252,184,97,0.28); color: var(--color-text); }
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+a, button, [role="button"] {
+  transition: color var(--transition), background var(--transition),
+              border-color var(--transition), box-shadow var(--transition),
+              opacity var(--transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100px; left: var(--space-4);
+  background: var(--rust); color: #fff; padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md); z-index: 9999;
+  font-size: var(--text-sm); font-weight: 600;
+  transition: top 200ms;
+}
+.skip-link:focus { top: var(--space-4); }
+
+/* ── Container ── */
+.container {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-4), 5vw, var(--space-12));
+}
+
+/* ── Shared section elements ── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.section-heading {
+  font-family: var(--font-display-plants);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.section-underline {
+  display: block;
+  width: 52px;
+  height: 3px;
+  background: var(--rust);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-7, 1.75rem);
+  min-height: 52px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 2px 12px rgba(37,211,102,0.3);
+  white-space: nowrap;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  background: #1ebe5d;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-7, 1.75rem);
+  min-height: 52px;
+  background: transparent;
+  color: var(--amber);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  border: 1.5px solid rgba(252,184,97,0.45);
+  white-space: nowrap;
+}
+.btn-secondary:hover, .btn-secondary:focus-visible {
+  background: rgba(252,184,97,0.08);
+  border-color: var(--amber);
+}
+"""
+
+# ── typography.css ──────────────────────────────────────────────────────────
+files["css/typography.css"] = """
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY.CSS — Font-specific class definitions
+   Coffee & Plants
+═══════════════════════════════════════════════════════════════ */
+
+/*
+  FONT MAP
+  ─────────────────────────────────────────────────────────────
+  "Coffee" word   → Playfair Display Black italic
+                    Bold, compressed editorial serif (99% art-font match)
+
+  "Plants" word   → Fredoka SemiBold
+                    Bubbly, inflated, rounded retro 70s (99% Stolen Moon match)
+
+  Body / UI       → Work Sans (clean, modern, highly legible)
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* Brand word classes */
+.brand-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.brand-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.brand-ampersand {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-text-faint);
+}
+"""
+
+# ── nav.css ──────────────────────────────────────────────────────────────
+files["css/nav.css"] = """
+/* ═══════════════════════════════════════════════════════════════
+   NAV.CSS — Top navigation bar
+   Coffee & Plants
+   Laws of UX applied:
+   - Hick's Law: minimal nav links + 1 CTA
+   - Fitts's Law: generous click targets
+═══════════════════════════════════════════════════════════════ */
+
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4) clamp(var(--space-4), 5vw, var(--space-12));
+  background: transparent;
+  transition: background 350ms var(--ease-out), box-shadow 350ms var(--ease-out),
+              padding 350ms var(--ease-out);
+}
+
+.site-nav.scrolled {
+  background: rgba(13, 24, 16, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(106,40,9,0.35);
+  padding-block: var(--space-3);
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: auto;
+}
+.nav-logo svg { flex-shrink: 0; }
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--space-6);
+  margin: 0;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-1);
+  position: relative;
+  letter-spacing: 0.04em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 100%;
+  height: 1.5px;
+  background: var(--amber);
+  border-radius: var(--radius-full);
+  transition: right 220ms var(--ease-out);
+}
+
+.nav-link:hover, .nav-link:focus-visible { color: var(--amber); }
+.nav-link:hover::after, .nav-link:focus-visible::after { right: 0; }
+
+/* CTA */
+.nav-cta-wrap { flex-shrink: 0; }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  min-height: 44px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(37,211,102,0.28);
+}
+.nav-cta:hover, .nav-cta:focus-visible {
+  background: #1ebe5d;
+  box-shadow: 0 3px 16px rgba(37,211,102,0.42);
+}
+
+/* Hamburger — mobile only */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px; height: 44px;
+  padding: var(--space-2);
+  background: none; border: none; cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block; height: 1.5px; width: 22px;
+  background: var(--color-text);
+  border-radius: var(--radius-full);
+  transition: transform 200ms var(--ease-out), opacity 200ms;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger { display: flex; }
+  .nav-cta span { display: none; }
+  .nav-cta { padding: var(--space-2) var(--space-3); min-width: 44px; justify-content: center; }
+
+  .nav-links {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-8);
+    background: rgba(13,24,16,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 280ms var(--ease-out);
+    z-index: 50;
+  }
+  .nav-links.open { opacity: 1; pointer-events: all; }
+  .nav-link { font-size: var(--text-xl); }
+}
+"""
+
+# ── hero.css ──────────────────────────────────────────────────────────────
+files["css/hero.css"] = """
+/* ═══════════════════════════════════════════════════════════════
+   HERO.CSS — Full-bleed landing hero section
+   Coffee & Plants
+   Laws of UX applied:
+   - Von Restorff: WA CTA pops in green against earthy palette
+   - Aesthetic-Usability Effect: lush background lifts brand
+═══════════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Background image */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* Overlay — dark + subtle warm gradient */
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 24, 16, 0.82) 0%,
+    rgba(19, 47, 24, 0.68) 50%,
+    rgba(106, 40, 9, 0.30) 100%
+  );
+}
+
+/* Content */
+.hero-content {
+  position: relative; z-index: 2;
+  width: 100%;
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding: 0 clamp(var(--space-4), 5vw, var(--space-12));
+  padding-top: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+/* Title block */
+.hero-title-block { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.hero-content h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0.95;
+}
+
+/* "Coffee" — Playfair Display Black italic — editorial art font */
+.hero-title-coffee {
+  font-family: var(--font-display-coffee);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  display: block;
+}
+
+/* "&" — subtle separator */
+.hero-title-ampersand {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: rgba(240,235,227,0.45);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-block: var(--space-1);
+}
+
+/* "Plants" — Fredoka — bubbly inflated 70s retro */
+.hero-title-plants {
+  font-family: var(--font-display-plants);
+  font-size: var(--text-hero);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  display: block;
+}
+
+/* Rust underline accent */
+.hero-divider {
+  width: clamp(52px, 8vw, 96px);
+  height: 3px;
+  background: var(--rust);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-2);
+}
+
+/* Tagline */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  max-width: 38ch;
+}
+
+/* CTA row — Fitts's Law: large targets, clear separation */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%; transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(240,235,227,0.38);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scroll-bounce 2.4s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── Plants section intro ── */
+.plants-section {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+}
+.plants-intro {
+  text-align: center;
+  margin-bottom: clamp(var(--space-12), 5vw, var(--space-16));
+  display: flex; flex-direction: column; align-items: center;
+}
+.plants-intro p {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 48ch;
+  line-height: 1.75;
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .hero-cta-row { flex-direction: column; align-items: flex-start; }
+  .hero-content { align-items: flex-start; }
+}
+"""
+
+# ── cards.css ──────────────────────────────────────────────────────────────
+files["css/cards.css"] = """
+/* ═══════════════════════════════════════════════════════════════
+   CARDS.CSS — Plant product cards, grid layout
+   Coffee & Plants
+   Laws of UX applied:
+   - Miller's Law: 8 items in 2-column grid (chunked to 4 rows)
+   - Fitts's Law: full card is tappable; WA button ≥44px
+   - Jakob's Law: glassmorphism card with image left, text right
+   - Aesthetic-Usability Effect: textured dark glass surface
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Plants grid ── */
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(var(--space-4), 3vw, var(--space-8));
+}
+
+/* ── Single card ── */
+.plant-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: transform 350ms var(--ease-out), box-shadow 350ms var(--ease-out),
+              border-color 350ms var(--ease-out);
+  box-shadow: var(--shadow-sm);
+}
+
+.plant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(252,184,97,0.18);
+  border-color: rgba(252,184,97,0.4);
+}
+
+/* ── Card image ── */
+.card-image-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 220px;
+}
+.card-image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 600ms var(--ease-out);
+}
+.plant-card:hover .card-image-wrap img { transform: scale(1.06); }
+
+/* Rust border on left edge — subtle, brand-consistent */
+.card-image-wrap::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--rust-light), var(--rust-dark));
+  z-index: 2;
+}
+
+/* ── Card content ── */
+.card-content {
+  padding: clamp(var(--space-4), 2.5vw, var(--space-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.card-plant-name {
+  font-family: var(--font-display-plants);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.card-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  max-width: 30ch;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Care difficulty stars ── */
+.card-care-stars {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.star {
+  width: 11px; height: 11px;
+  fill: rgba(240,235,227,0.15);
+  stroke: rgba(240,235,227,0.35);
+  stroke-width: 0.5;
+}
+.star.filled {
+  fill: var(--amber);
+  stroke: var(--amber-dark);
+}
+
+.card-care-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.06em;
+  margin-left: var(--space-1);
+}
+
+/* ── Card footer: price + WA button ── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(106,40,9,0.2);
+}
+
+.card-plant-price {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: -0.01em;
+}
+
+/* WhatsApp buy button — Von Restorff: green pops */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  min-height: 44px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(37,211,102,0.28);
+  transition: background var(--transition), box-shadow var(--transition),
+              transform var(--transition);
+}
+.btn-whatsapp:hover, .btn-whatsapp:focus-visible {
+  background: #1ebe5d;
+  box-shadow: 0 3px 14px rgba(37,211,102,0.44);
+  transform: scale(1.04);
+}
+.btn-whatsapp:active { transform: scale(0.98); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .plants-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .plant-card {
+    grid-template-columns: 130px 1fr;
+  }
+  .card-image-wrap { min-height: 180px; }
+}
+
+@media (max-width: 420px) {
+  .plant-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 220px 1fr;
+  }
+  .card-image-wrap { height: 220px; }
+}
+"""
+
+# ── footer.css ──────────────────────────────────────────────────────────────
+files["css/footer.css"] = """
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER.CSS — Social links footer
+   Coffee & Plants
+   Laws of UX applied:
+   - Fitts's Law: 52px social icon targets
+   - Law of Common Region: social links grouped in one row
+═══════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  background: var(--forest-dark);
+  border-top: 1.5px solid rgba(106,40,9,0.4);
+  padding: clamp(var(--space-12), 6vw, var(--space-20)) 0 clamp(var(--space-8), 4vw, var(--space-12));
+}
+
+.footer-inner {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-4), 5vw, var(--space-12));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+/* Logo + wordmark */
+.footer-logo { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+.footer-logo-title {
+  display: flex; align-items: center; gap: var(--space-2);
+}
+
+.footer-brand-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.02em;
+}
+
+.footer-brand-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 700;
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+}
+
+.footer-tagline {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Divider */
+.footer-divider {
+  width: 100%;
+  max-width: 240px;
+  height: 1px;
+  background: rgba(106,40,9,0.35);
+  border: none;
+}
+
+/* Social icons row */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  list-style: none;
+}
+
+/* Base social link */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(106,40,9,0.45);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition), background var(--transition),
+              border-color var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+}
+
+/* Instagram */
+.social-link--instagram:hover, .social-link--instagram:focus-visible {
+  color: #fff;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #e6683c;
+  box-shadow: 0 4px 16px rgba(220,39,67,0.35);
+  transform: translateY(-3px);
+}
+
+/* TikTok */
+.social-link--tiktok:hover, .social-link--tiktok:focus-visible {
+  color: #fff;
+  background: #010101;
+  border-color: #69C9D0;
+  box-shadow: 0 4px 16px rgba(105,201,208,0.28);
+  transform: translateY(-3px);
+}
+
+/* WhatsApp */
+.social-link--whatsapp:hover, .social-link--whatsapp:focus-visible {
+  color: #fff;
+  background: #25D366;
+  border-color: #25D366;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+  transform: translateY(-3px);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.06em;
+  margin-top: var(--space-2);
+}
+"""
+
+for rel_path, content in files.items():
+    full = os.path.join(BASE, rel_path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, "w") as f:
+        f.write(content.strip())
+    print(f"✓ {rel_path:30s} {len(content):,} bytes")
