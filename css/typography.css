@@ -1,1 +1,142 @@
-/* placeholder */
+/* ============================================
+   TYPOGRAPHY.CSS — All Text Styles
+   Coffee & Plants
+============================================ */
+
+/* Brand Name Lockup */
+.brand-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15em;
+  line-height: 1;
+}
+
+.brand-coffee {
+  font-family: var(--font-coffee);
+  color: var(--amber);
+  letter-spacing: -0.01em;
+}
+
+.brand-ampersand {
+  font-family: var(--font-coffee);
+  color: var(--color-text-muted);
+  font-size: 0.7em;
+}
+
+.brand-plants {
+  font-family: var(--font-plants);
+  color: #a8d5a2;
+  letter-spacing: 0.01em;
+}
+
+/* Hero Typography */
+.hero-title {
+  line-height: 1.05;
+}
+
+.hero-title .brand-coffee {
+  font-size: var(--text-hero);
+  display: block;
+}
+
+.hero-title .brand-ampersand {
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+
+.hero-title .brand-plants {
+  font-size: clamp(2.8rem, 6.5vw, 7.5rem);
+  display: block;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: var(--space-4);
+}
+
+/* Section Headers */
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.section-title {
+  font-family: var(--font-plants);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  line-height: 1.1;
+}
+
+.section-title span {
+  color: var(--amber);
+}
+
+/* Card Typography */
+.card-plant-name {
+  font-family: var(--font-plants);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.card-plant-latin {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  margin-top: var(--space-1);
+}
+
+.card-price {
+  font-family: var(--font-coffee);
+  font-size: var(--text-xl);
+  color: var(--amber);
+  line-height: 1;
+}
+
+.card-price-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.card-description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Care Tags */
+.care-tag {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* Nav Typography */
+.nav-logo .brand-coffee { font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
+.nav-logo .brand-plants { font-size: clamp(1.1rem, 2.2vw, 1.6rem); }
+
+/* Footer */
+.footer-brand .brand-coffee { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+.footer-brand .brand-plants { font-size: clamp(1.4rem, 2.8vw, 2.2rem); }
+
+.footer-copy {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.06em;
+}
