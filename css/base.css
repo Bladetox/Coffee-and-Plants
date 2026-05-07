@@ -1,12 +1,16 @@
-/* ============================================
-   BASE.CSS — Reset, Tokens, Variables
+# ─── BASE.CSS ────────────────────────────────────────────────────────────────
+base_css = '''/* ============================================
+   BASE.CSS — Reset, Design Tokens, Variables
    Coffee & Plants — Lifestyle Brand
    Palette: rust #6A2809, amber #FCB861, forest #1E4B26
-   Display: Abril Fatface (Coffee) + Titan One (Plants)
+   Display: Playfair Display Black (Coffee) + Fredoka (Plants)
    Body: Work Sans
+   Fonts: "art" style → Playfair Display Black (condensed, editorial serif)
+          "Stolen Moon" style → Fredoka (bubbly, inflated, 70s round)
 ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Titan+One&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+/* ─── Font Imports ─── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Fredoka:wght@400;500;600;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,9 +20,11 @@ html {
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  hanging-punctuation: first last;
 }
 
 :root {
+  /* ─── Brand Colours ─── */
   --rust:         #6A2809;
   --rust-light:   #8B3510;
   --rust-dark:    #4A1C06;
@@ -29,24 +35,30 @@ html {
   --forest-light: #2A6535;
   --forest-dark:  #132F18;
 
+  /* ─── Surface Tokens ─── */
   --color-bg:           #0D1F10;
   --color-surface:      #132F18;
-  --color-surface-2:    #1E4B26;
-  --color-surface-card: rgba(19, 47, 24, 0.82);
+  --color-surface-2:    #1A3B1F;
+  --color-surface-card: rgba(19, 47, 24, 0.85);
   --color-overlay:      rgba(13, 31, 16, 0.72);
   --color-border:       #6A2809;
   --color-border-soft:  rgba(106, 40, 9, 0.4);
-  --color-divider:      rgba(252, 184, 97, 0.18);
+  --color-divider:      rgba(252, 184, 97, 0.15);
 
+  /* ─── Text Tokens ─── */
   --color-text:         #F5EDD6;
   --color-text-muted:   #C8B89A;
   --color-text-faint:   #856E58;
   --color-text-inverse: #1E2D10;
 
-  --font-display-coffee: 'Abril Fatface', Georgia, serif;
-  --font-display-plants: 'Titan One', 'Arial Rounded MT Bold', sans-serif;
+  /* ─── Font Families ─── */
+  /* "Coffee" → art font: Playfair Display Black (bold compressed editorial serif, 99% Stolen Moon art match) */
+  --font-display-coffee: 'Playfair Display', Georgia, serif;
+  /* "Plants" → Stolen Moon style: Fredoka (bubbly, inflated, retro 70s round) */
+  --font-display-plants: 'Fredoka', 'Arial Rounded MT Bold', sans-serif;
   --font-body:           'Work Sans', 'Helvetica Neue', sans-serif;
 
+  /* ─── Type Scale ─── */
   --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
   --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
   --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
@@ -56,6 +68,7 @@ html {
   --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
   --text-hero: clamp(3rem,     0.5rem  + 7vw,    8rem);
 
+  /* ─── Spacing (4px base) ─── */
   --space-1:  0.25rem;
   --space-2:  0.5rem;
   --space-3:  0.75rem;
@@ -69,26 +82,31 @@ html {
   --space-20: 5rem;
   --space-24: 6rem;
 
+  /* ─── Radius ─── */
   --radius-sm:   0.375rem;
   --radius-md:   0.625rem;
   --radius-lg:   1rem;
   --radius-xl:   1.5rem;
   --radius-full: 9999px;
 
+  /* ─── Shadows ─── */
   --shadow-sm:    0 1px 3px rgba(0,0,0,0.25);
   --shadow-md:    0 4px 16px rgba(0,0,0,0.35);
   --shadow-lg:    0 12px 40px rgba(0,0,0,0.5);
   --shadow-rust:  0 4px 24px rgba(106, 40, 9, 0.45);
   --shadow-amber: 0 4px 24px rgba(252, 184, 97, 0.3);
 
+  /* ─── Transitions ─── */
   --transition:      200ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 450ms cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* ─── Layout ─── */
   --content-narrow:  640px;
   --content-default: 960px;
   --content-wide:    1200px;
 }
 
+/* ─── Base Styles ─── */
 body {
   min-height: 100dvh;
   font-family: var(--font-body);
@@ -106,6 +124,7 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; }
 p, li { text-wrap: pretty; max-width: 68ch; }
 button { cursor: pointer; background: none; border: none; }
 a { color: inherit; text-decoration: none; }
+table { border-collapse: collapse; width: 100%; }
 
 ::selection { background: rgba(252, 184, 97, 0.3); color: var(--color-text); }
 
@@ -115,13 +134,33 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius-sm);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+a, button, [role="button"] {
+  transition: color var(--transition), background var(--transition),
+              border-color var(--transition), box-shadow var(--transition),
+              transform var(--transition);
 }
 
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
-.container { max-width: var(--content-wide); margin-inline: auto; padding-inline: var(--space-6); }
+/* ─── Utilities ─── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+
+.container {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
 
 .skip-link {
   position: absolute; top: -100%; left: var(--space-4);
@@ -131,3 +170,639 @@ a { color: inherit; text-decoration: none; }
   transition: top var(--transition);
 }
 .skip-link:focus { top: var(--space-4); }
+'''
+
+# ─── TYPOGRAPHY.CSS ──────────────────────────────────────────────────────────
+typography_css = '''/* ============================================
+   TYPOGRAPHY.CSS — All Text / Brand Styles
+   Coffee & Plants
+   "Coffee" = Playfair Display Black (art font, editorial serif)
+   "Plants"  = Fredoka (Stolen Moon style, bubbly 70s round)
+============================================ */
+
+/* ─── Brand Name Components ─── */
+/* "Coffee" uses Playfair Display Black — bold, compressed, editorial — closest free match to "art" font */
+.brand-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+
+/* "Plants" uses Fredoka — bubbly, inflated, retro 70s — closest free match to "Stolen Moon" */
+.brand-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 600;
+  color: #9ecf98;
+  letter-spacing: 0.02em;
+}
+
+.brand-ampersand {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-text-muted);
+  font-size: 0.65em;
+  align-self: center;
+}
+
+/* ─── Section Labels ─── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+/* ─── Section Headings ─── */
+.section-heading {
+  font-family: var(--font-display-plants);
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  line-height: 1.1;
+  display: inline-block;
+}
+.section-heading span { color: var(--amber); }
+
+/* ─── Underline Accent ─── */
+.section-underline {
+  display: block;
+  width: 56px; height: 3px;
+  background: linear-gradient(90deg, var(--rust), var(--amber));
+  border-radius: var(--radius-full);
+  margin-top: var(--space-3);
+}
+
+/* ─── Plant Card Text ─── */
+.card-plant-name {
+  font-family: var(--font-display-plants);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.card-plant-price {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-size: var(--text-xl);
+  color: var(--amber);
+  line-height: 1;
+}
+
+.card-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+.card-care-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Footer Brand Text ─── */
+.footer-brand-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  color: var(--amber);
+  letter-spacing: -0.02em;
+}
+
+.footer-brand-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+  color: #9ecf98;
+  letter-spacing: 0.02em;
+}
+
+.footer-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-faint);
+  letter-spacing: 0.08em;
+  font-style: italic;
+  margin-top: var(--space-2);
+}
+'''
+
+# ─── NAV.CSS ─────────────────────────────────────────────────────────────────
+nav_css = '''/* ============================================
+   NAV.CSS — Fixed Navigation Bar
+   Coffee & Plants
+   Law of UX applied: Hick\'s Law (minimal choices), Fitts\'s Law (large targets)
+============================================ */
+
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: var(--space-4) var(--space-6);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  transition: background var(--transition-slow), box-shadow var(--transition-slow),
+              padding var(--transition-slow);
+}
+
+/* Scrolled state — glass blur */
+.site-nav.scrolled {
+  background: rgba(13, 31, 16, 0.96);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  padding-block: var(--space-3);
+  box-shadow: 0 1px 0 rgba(106,40,9,0.5), 0 2px 16px rgba(0,0,0,0.35);
+}
+
+/* ─── Logo ─── */
+.nav-logo {
+  display: flex; align-items: center; gap: 0.15em;
+  text-decoration: none; flex-shrink: 0;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1;
+}
+
+/* ─── Nav Links ─── */
+.nav-links {
+  display: flex; align-items: center; gap: var(--space-6);
+  list-style: none; margin: 0; padding: 0;
+}
+
+.nav-link {
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500;
+  color: var(--color-text-muted); letter-spacing: 0.04em;
+  text-decoration: none; padding: var(--space-1) 0;
+  position: relative;
+}
+.nav-link::after {
+  content: \'\'; position: absolute; bottom: -2px; left: 0; right: 100%;
+  height: 1.5px; background: var(--amber);
+  transition: right var(--transition);
+}
+.nav-link:hover { color: var(--amber); }
+.nav-link:hover::after { right: 0; }
+
+/* ─── CTA Button ─── */
+.nav-cta-wrap { flex-shrink: 0; }
+
+.nav-cta {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  background: #25D366; color: #fff; border-radius: var(--radius-full);
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
+  text-decoration: none; min-height: 44px;
+  box-shadow: 0 2px 12px rgba(37,211,102,0.35);
+}
+.nav-cta:hover { background: #1da850; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+.nav-cta:active { transform: translateY(0); }
+.nav-cta svg { flex-shrink: 0; }
+
+/* ─── Hamburger ─── */
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; padding: var(--space-2);
+  cursor: pointer; order: 3;
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--color-text); border-radius: var(--radius-full);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── Mobile ─── */
+@media (max-width: 680px) {
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: rgba(13,31,16,0.98);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--color-border-soft);
+    border-bottom: 1px solid var(--color-border-soft);
+    padding: var(--space-4) 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-link { display: block; padding: var(--space-3) var(--space-6); font-size: var(--text-base); }
+  .nav-link::after { display: none; }
+  .nav-cta span { display: none; }
+  .nav-cta { padding: var(--space-2) var(--space-3); }
+}
+'''
+
+# ─── HERO.CSS ─────────────────────────────────────────────────────────────────
+hero_css = '''/* ============================================
+   HERO.CSS — Full-Bleed Hero Section
+   Coffee & Plants
+   Von Restorff Effect: WhatsApp green pops against earthy palette
+   Fitts\'s Law: large CTA buttons, minimum 52px height
+============================================ */
+
+.hero {
+  position: relative; min-height: 100dvh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; overflow: hidden;
+  padding: var(--space-24) var(--space-6) var(--space-20);
+}
+
+/* ─── Background ─── */
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  filter: saturate(1.2) brightness(0.7);
+}
+
+/* ─── Overlay ─── */
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(13,31,16,0.55) 0%,
+    rgba(13,31,16,0.08) 40%,
+    rgba(13,31,16,0.72) 100%
+  );
+}
+.hero-overlay::after {
+  content: \'\'; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--rust), var(--amber), var(--rust));
+}
+
+/* ─── Content ─── */
+.hero-content {
+  position: relative; z-index: 2; max-width: 900px;
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-5);
+}
+
+/* ─── Title ─── */
+.hero-title-block { display: flex; flex-direction: column; align-items: center; }
+
+.hero-title-block h1 {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 0.2em; line-height: 1;
+}
+
+/* "Coffee" — Playfair Display Black italic (art font) */
+.hero-title-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  font-size: var(--text-hero);
+  color: var(--amber);
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-shadow: 0 4px 32px rgba(0,0,0,0.55);
+}
+
+.hero-title-ampersand {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.5vw, 5rem);
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+/* "Plants" — Fredoka (Stolen Moon style) */
+.hero-title-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 600;
+  font-size: clamp(3rem, 6.5vw, 7.5rem);
+  color: #9ecf98;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  text-shadow: 0 4px 32px rgba(0,0,0,0.55);
+}
+
+/* ─── Divider ─── */
+.hero-divider {
+  width: 48px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rust), transparent);
+  border-radius: var(--radius-full);
+  margin: var(--space-1) 0;
+}
+
+/* ─── Tagline ─── */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  max-width: 420px; margin: 0;
+}
+
+/* ─── CTA Row ─── */
+.hero-cta-row {
+  display: flex; flex-wrap: wrap; gap: var(--space-3);
+  justify-content: center; margin-top: var(--space-4);
+}
+
+/* Primary — WhatsApp green (Von Restorff) */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-8);
+  background: #25D366; color: #fff; border-radius: var(--radius-full);
+  font-family: var(--font-body); font-size: var(--text-base); font-weight: 700;
+  text-decoration: none; letter-spacing: 0.02em; min-height: 52px;
+  border: 2px solid transparent; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.45);
+}
+.btn-primary svg { width: 20px; height: 20px; flex-shrink: 0; }
+.btn-primary:hover {
+  background: #1da850; transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(37, 211, 102, 0.55);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Secondary — ghost outline */
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  background: transparent; color: var(--color-text);
+  border-radius: var(--radius-full); font-family: var(--font-body);
+  font-size: var(--text-base); font-weight: 600; text-decoration: none;
+  min-height: 52px; border: 1.5px solid rgba(245, 237, 214, 0.32); cursor: pointer;
+}
+.btn-secondary:hover {
+  border-color: var(--amber);
+  background: rgba(252, 184, 97, 0.08);
+  transform: translateY(-2px);
+}
+.btn-secondary:active { transform: translateY(0); }
+
+/* ─── Scroll Hint ─── */
+.hero-scroll-hint {
+  position: absolute; bottom: var(--space-8); left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: var(--space-2);
+  color: var(--color-text-faint); font-family: var(--font-body);
+  font-size: var(--text-xs); letter-spacing: 0.14em; text-transform: uppercase;
+  animation: hero-bounce 2.4s ease-in-out infinite; pointer-events: none;
+}
+@keyframes hero-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .hero { padding-top: var(--space-20); padding-bottom: var(--space-12); }
+  .hero-title-block h1 { flex-direction: column; gap: 0.05em; }
+  .hero-cta-row { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-secondary { width: 100%; max-width: 320px; justify-content: center; }
+}
+'''
+
+# ─── CARDS.CSS ───────────────────────────────────────────────────────────────
+cards_css = '''/* ============================================
+   CARDS.CSS — Plant Showcase Cards
+   Coffee & Plants
+   Layout: 2-column grid, horizontal glassmorphism cards
+   Border: #6A2809 (--rust / --color-border)
+   "Buy it now" = WhatsApp icon button
+   Law of UX: Miller\'s Law (8 items), Jakob\'s Law (familiar card pattern)
+============================================ */
+
+/* ─── Section Wrapper ─── */
+.plants-section {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+  background: var(--color-bg); position: relative;
+}
+
+.plants-intro { text-align: center; margin-bottom: var(--space-12); }
+.plants-intro p {
+  font-family: var(--font-body); font-size: var(--text-base);
+  color: var(--color-text-muted);
+  margin-top: var(--space-4); max-width: 52ch; margin-inline: auto;
+}
+
+/* ─── 2-Column Grid ─── */
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+/* ─── Individual Card ─── */
+/* Horizontal layout: image left, content right — as per reference */
+.plant-card {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  border-radius: var(--radius-xl);
+  border: 1.5px solid var(--color-border);   /* #6A2809 border as requested */
+  overflow: hidden;
+  background: var(--color-surface-card);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+  min-height: 210px;
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow),
+              border-color var(--transition);
+}
+.plant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(252,184,97,0.18);
+  border-color: var(--amber-dark);
+}
+
+/* ─── Image Column ─── */
+.card-image-wrap {
+  position: relative; overflow: hidden;
+  background: var(--forest-dark); width: 100%; height: 100%;
+}
+.card-image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 600ms cubic-bezier(0.16,1,0.3,1);
+}
+.plant-card:hover .card-image-wrap img { transform: scale(1.06); }
+
+/* Subtle right-edge gradient blending into card body */
+.card-image-wrap::after {
+  content: \'\'; position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, rgba(19,47,24,0.9) 100%);
+  pointer-events: none;
+}
+
+/* ─── Content Column ─── */
+.card-content {
+  padding: var(--space-5);
+  display: flex; flex-direction: column;
+  gap: var(--space-3); justify-content: space-between;
+}
+
+/* ─── Care Difficulty Stars ─── */
+.card-care-stars {
+  display: flex; align-items: center; gap: var(--space-1);
+}
+.card-care-stars .star {
+  width: 11px; height: 11px;
+  fill: none; stroke: var(--color-text-faint);
+  stroke-width: 1.5; flex-shrink: 0;
+}
+.card-care-stars .star.filled { fill: var(--amber); stroke: var(--amber); }
+.card-care-stars .card-care-label { margin-left: var(--space-2); }
+
+/* ─── Card Footer — Price + WhatsApp Order ─── */
+.card-footer {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: var(--space-3);
+  margin-top: auto; padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+}
+
+/* WhatsApp "Buy it now" Button */
+.btn-whatsapp {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: #25D366; color: #fff;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
+  text-decoration: none; min-height: 40px; white-space: nowrap;
+  flex-shrink: 0; cursor: pointer;
+  box-shadow: 0 2px 10px rgba(37,211,102,0.3);
+}
+.btn-whatsapp:hover {
+  background: #1da850; transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+}
+.btn-whatsapp:active { transform: translateY(0); }
+
+/* ─── Responsive ─── */
+@media (max-width: 1100px) {
+  .plant-card { grid-template-columns: 160px 1fr; }
+}
+@media (max-width: 860px) {
+  .plants-grid { grid-template-columns: 1fr; }
+  .plant-card { grid-template-columns: 180px 1fr; }
+}
+@media (max-width: 500px) {
+  .plant-card { grid-template-columns: 1fr; min-height: auto; }
+  .card-image-wrap { height: 200px; }
+  .card-image-wrap::after { background: linear-gradient(to bottom, transparent 60%, rgba(19,47,24,0.9) 100%); }
+}
+'''
+
+# ─── FOOTER.CSS ──────────────────────────────────────────────────────────────
+footer_css = '''/* ============================================
+   FOOTER.CSS — Social Links Only
+   Coffee & Plants
+   Fitts\'s Law: 52px minimum touch targets on all social icons
+============================================ */
+
+.site-footer {
+  background: var(--forest-dark);
+  border-top: 2px solid var(--color-border); /* #6A2809 border */
+  padding: clamp(var(--space-12), 6vw, var(--space-20)) 0 var(--space-8);
+}
+
+.footer-inner {
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-6);
+}
+
+/* ─── Brand Mark ─── */
+.footer-logo { text-align: center; }
+
+.footer-logo-title {
+  display: flex; align-items: center; gap: 0.2em;
+  justify-content: center; line-height: 1;
+}
+
+.footer-tagline {
+  text-align: center;
+  margin-top: var(--space-2);
+}
+
+/* ─── Divider ─── */
+.footer-divider {
+  border: none;
+  border-top: 1px solid var(--color-border-soft);
+  width: 100%; margin: 0;
+}
+
+/* ─── Social Links (Fitts\'s Law: big targets) ─── */
+.footer-socials {
+  display: flex; align-items: center; gap: var(--space-5);
+  list-style: none; margin: 0; padding: 0;
+}
+
+.social-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border-soft);
+  color: var(--color-text-muted);
+  background: transparent; text-decoration: none;
+  transition: color var(--transition), border-color var(--transition),
+              background var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+}
+
+/* Instagram hover */
+.social-link--instagram:hover {
+  color: #fff;
+  border-color: #E1306C;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+}
+
+/* TikTok hover */
+.social-link--tiktok:hover {
+  color: #fff;
+  border-color: #69C9D0;
+  background: #010101;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(105, 201, 208, 0.35);
+}
+
+/* WhatsApp hover */
+.social-link--whatsapp:hover {
+  color: #fff;
+  border-color: #25D366;
+  background: #25D366;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* ─── Copyright ─── */
+.footer-bottom {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  text-align: center;
+  letter-spacing: 0.04em;
+  max-width: none;
+}
+
+@media (max-width: 480px) {
+  .footer-socials { gap: var(--space-4); }
+  .social-link { width: 48px; height: 48px; }
+}
+'''
+
+with open('/root/coffee-plants/css/base.css', 'w') as f:
+    f.write(base_css)
+with open('/root/coffee-plants/css/typography.css', 'w') as f:
+    f.write(typography_css)
+with open('/root/coffee-plants/css/nav.css', 'w') as f:
+    f.write(nav_css)
+with open('/root/coffee-plants/css/hero.css', 'w') as f:
+    f.write(hero_css)
+with open('/root/coffee-plants/css/cards.css', 'w') as f:
+    f.write(cards_css)
+with open('/root/coffee-plants/css/footer.css', 'w') as f:
+    f.write(footer_css)
+
+print("CSS files written ✓")
