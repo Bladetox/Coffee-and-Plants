@@ -1,0 +1,186 @@
+/* ═══════════════════════════════════════════════════════════════
+   HERO.CSS — Full-bleed landing hero + plants section intro
+   Coffee & Plants
+
+   Laws of UX:
+   · Von Restorff Effect   — WA CTA in green pops against earthy palette
+   · Aesthetic-Usability   — lush Monstera bg elevates brand trust
+   · Fitts's Law           — large CTA button, generous padding
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Hero wrapper ── */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ── Background image ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* ── Dark overlay with warm rust bleed ── */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 24, 16, 0.85) 0%,
+    rgba(19, 47, 24, 0.70) 50%,
+    rgba(106, 40, 9, 0.32) 100%
+  );
+}
+
+/* ── Hero content ── */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding: 0 clamp(var(--space-4), 5vw, var(--space-12));
+  padding-top: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+/* ── Title block ── */
+.hero-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hero-content h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0.95;
+}
+
+/* "Coffee" — Playfair Display Black Italic — editorial art font */
+.hero-title-coffee {
+  font-family: var(--font-display-coffee);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  display: block;
+}
+
+/* "&" — minimal, recedes into background */
+.hero-title-ampersand {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: rgba(240, 235, 227, 0.4);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-block: var(--space-1);
+}
+
+/* "Plants" — Fredoka — bubbly, inflated, retro 70s */
+.hero-title-plants {
+  font-family: var(--font-display-plants);
+  font-size: var(--text-hero);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  display: block;
+}
+
+/* Rust accent underline */
+.hero-divider {
+  width: clamp(52px, 8vw, 96px);
+  height: 3px;
+  background: var(--rust);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-2);
+}
+
+/* Tagline */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  max-width: 38ch;
+}
+
+/* ── CTA row (Fitts: large targets) ── */
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+/* ── Animated scroll hint ── */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(240, 235, 227, 0.38);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scroll-bounce 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── Plants section ── */
+.plants-section {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+  background: var(--color-bg);
+}
+
+.plants-intro {
+  text-align: center;
+  margin-bottom: clamp(var(--space-12), 5vw, var(--space-16));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plants-intro p {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 48ch;
+  line-height: 1.75;
+  margin-top: var(--space-3);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .hero-content { align-items: flex-start; }
+  .hero-cta-row { flex-direction: column; align-items: flex-start; }
+}

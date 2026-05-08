@@ -1,0 +1,139 @@
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER.CSS — Social-links-only footer
+   Coffee & Plants
+
+   Laws of UX:
+   · Fitts's Law        — 52px social icon touch targets
+   · Law of Common Region — social links grouped in one row
+═══════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  background: var(--forest-dark);
+  border-top: 1.5px solid rgba(106, 40, 9, 0.4);
+  padding:
+    clamp(var(--space-12), 6vw, var(--space-20))
+    0
+    clamp(var(--space-8), 4vw, var(--space-12));
+}
+
+.footer-inner {
+  max-width: var(--content-default);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-4), 5vw, var(--space-12));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+/* ── Brand wordmark ── */
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.footer-logo-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.footer-brand-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.02em;
+}
+
+.footer-brand-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 700;
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+}
+
+.footer-tagline {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Divider ── */
+.footer-divider {
+  width: 100%;
+  max-width: 240px;
+  height: 1px;
+  background: rgba(106, 40, 9, 0.35);
+  border: none;
+}
+
+/* ── Social icons row ── */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(106, 40, 9, 0.45);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition:
+    color var(--transition),
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+/* Instagram hover */
+.social-link--instagram:hover,
+.social-link--instagram:focus-visible {
+  color: #fff;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #e6683c;
+  box-shadow: 0 4px 16px rgba(220, 39, 67, 0.35);
+  transform: translateY(-3px);
+}
+
+/* TikTok hover */
+.social-link--tiktok:hover,
+.social-link--tiktok:focus-visible {
+  color: #fff;
+  background: #010101;
+  border-color: #69C9D0;
+  box-shadow: 0 4px 16px rgba(105, 201, 208, 0.28);
+  transform: translateY(-3px);
+}
+
+/* WhatsApp hover */
+.social-link--whatsapp:hover,
+.social-link--whatsapp:focus-visible {
+  color: #fff;
+  background: #25D366;
+  border-color: #25D366;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transform: translateY(-3px);
+}
+
+/* ── Copyright line ── */
+.footer-bottom {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.06em;
+  margin-top: var(--space-2);
+}

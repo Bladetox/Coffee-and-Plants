@@ -1,0 +1,37 @@
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY.CSS — Brand font class definitions
+   Coffee & Plants
+
+   FONT MAP:
+   "Coffee"  → Playfair Display Black Italic
+               Bold compressed editorial serif — art font match
+   "Plants"  → Fredoka SemiBold
+               Bubbly inflated rounded retro 70s — Stolen Moon match
+   Body / UI → Work Sans — clean, modern, legible
+═══════════════════════════════════════════════════════════════ */
+
+/* ── "Coffee" brand word ── */
+.brand-coffee {
+  font-family: var(--font-display-coffee);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--amber);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ── "Plants" brand word ── */
+.brand-plants {
+  font-family: var(--font-display-plants);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+/* ── "&" ampersand separator ── */
+.brand-ampersand {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-text-faint);
+}

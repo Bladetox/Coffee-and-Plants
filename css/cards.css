@@ -1,0 +1,189 @@
+/* ═══════════════════════════════════════════════════════════════
+   CARDS.CSS — Plant product cards + 2-column grid
+   Coffee & Plants
+
+   Laws of UX:
+   · Miller's Law         — 8 items chunked into 4 rows of 2
+   · Fitts's Law          — WA order button min 44px target
+   · Jakob's Law          — image-left / text-right card pattern
+   · Aesthetic-Usability  — dark glass surface, amber price accent
+═══════════════════════════════════════════════════════════════ */
+
+/* ── 2-column grid ── */
+.plants-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(var(--space-4), 3vw, var(--space-8));
+}
+
+/* ── Individual card ── */
+.plant-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 350ms var(--ease-out),
+    box-shadow 350ms var(--ease-out),
+    border-color 350ms var(--ease-out);
+}
+
+.plant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(252, 184, 97, 0.18);
+  border-color: rgba(252, 184, 97, 0.4);
+}
+
+/* ── Card image (left column) ── */
+.card-image-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 600ms var(--ease-out);
+}
+
+.plant-card:hover .card-image-wrap img {
+  transform: scale(1.06);
+}
+
+/* Rust accent strip on left edge — brand-consistent, not garish */
+.card-image-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--rust-light), var(--rust-dark));
+  z-index: 2;
+}
+
+/* ── Card text (right column) ── */
+.card-content {
+  padding: clamp(var(--space-4), 2.5vw, var(--space-6));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.card-plant-name {
+  font-family: var(--font-display-plants);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.card-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Care stars ── */
+.card-care-stars {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.star {
+  width: 11px;
+  height: 11px;
+  fill: rgba(240, 235, 227, 0.15);
+  stroke: rgba(240, 235, 227, 0.35);
+  stroke-width: 0.5;
+}
+.star.filled {
+  fill: var(--amber);
+  stroke: var(--amber-dark);
+}
+
+.card-care-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.06em;
+  margin-left: var(--space-1);
+}
+
+/* ── Card footer: price + WA button ── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(106, 40, 9, 0.2);
+}
+
+.card-plant-price {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: -0.01em;
+}
+
+/* WhatsApp order button — Von Restorff: green pops against dark card */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  min-height: 44px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.28);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+.btn-whatsapp:hover,
+.btn-whatsapp:focus-visible {
+  background: #1ebe5d;
+  box-shadow: 0 3px 14px rgba(37, 211, 102, 0.44);
+  transform: scale(1.04);
+}
+.btn-whatsapp:active { transform: scale(0.98); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .plants-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .plant-card { grid-template-columns: 130px 1fr; }
+  .card-image-wrap { min-height: 180px; }
+}
+
+@media (max-width: 420px) {
+  .plant-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 220px 1fr;
+  }
+  .card-image-wrap { height: 220px; }
+}
